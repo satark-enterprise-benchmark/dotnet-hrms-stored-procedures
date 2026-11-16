@@ -1,0 +1,27 @@
+{
+  "name": "dotnet-hrms-stored-procedures",
+  "org_url": "https://github.com/satark-enterprise-benchmark/dotnet-hrms-stored-procedures",
+  "upstream_url": "https://github.com/SiliconcareDev/hrms-backend",
+  "default_branch": "main",
+  "baseline_sha": "7b01d9f2087f8dd2fa608cb1333ab162bdfbaa0b",
+  "acquisition_date": "2026-11-16T21:10:24Z",
+  "license": "none-declared",
+  "maintained_status": "incomplete early-stage (auth-only; upstream README marks most modules unchecked)",
+  "docker_compose_available": false,
+  "messaging": [],
+  "databases": ["MySQL (client MySql.Data 8.0.26; access exclusively via stored procedures — definitions NOT present in repository)"],
+  "languages": ["C#", "ASMX / ASP.NET Web Services", ".NET Framework 4.8"],
+  "architecture_pattern": "Monolithic ASP.NET ASMX Web Service on IIS with MySQL stored-procedure data access",
+  "benchmark_purpose": "Enterprise PII HRMS surface: employee auth, JWT cookies, MySQL SP-backed HR data access patterns for Satark AI Phase 1 benchmarking",
+  "inaccessible_items": [
+    "db.sql referenced by README is ABSENT from repository and upstream/main (verified: zero .sql files)",
+    "Stored procedure definitions for sp_Get_EmployeeForLogin and sp_Insert_AuditLog are ABSENT — only call sites in C#",
+    "Web.config ABSENT (connection string, JwtSecret, AllowedOrigins, machineKey unavailable)",
+    "Global.asax ABSENT; repo contains Global.ascx / Global.ascx.cs typed as System.Web.UI.UserControl (not HttpApplication)",
+    "No Docker / docker-compose; Windows IIS + .NET Framework 4.8 required",
+    "No project LICENSE file at repository root",
+    "BCrypt.Net-Next and Newtonsoft.Json present as bin/*.dll but missing from packages.config",
+    "Nested procedures, triggers, views, and full 25-table schema NOT verifiable — no SQL sources in tree",
+    "Application startup not executed during Phase 1 documentation"
+  ]
+}

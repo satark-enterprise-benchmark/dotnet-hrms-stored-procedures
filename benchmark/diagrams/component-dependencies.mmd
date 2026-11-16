@@ -1,0 +1,13 @@
+flowchart LR
+  LoginASMX[api/Login.asmx] --> LoginCS[App_Code/Login.cs]
+  LoginCS --> Helper[helper.cs]
+  LoginCS --> PH[PasswordHelper.cs]
+  LoginCS --> JWT[JwtHelper.cs]
+  LoginCS --> AG[AuthGuard.cs]
+  AG --> JWT
+  Helper --> DBcs[DB.cs]
+  DBcs --> MySqlData[MySql.Data.dll]
+  PH --> BCrypt[BCrypt.Net-Next.dll]
+  LoginCS --> NJ[Newtonsoft.Json.dll]
+  Helper -.->|requires| SPs["sp_Get_EmployeeForLogin / sp_Insert_AuditLog (ABSENT)"]
+  DBcs -.->|requires| WebConfig[Web.config ABSENT]

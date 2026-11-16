@@ -1,0 +1,13 @@
+sequenceDiagram
+  participant C as Client
+  participant L as Login.asmx
+  participant P as PasswordHelper
+  participant DB as MySQL SP layer
+  C->>L: LoginUser(username, password)
+  L->>DB: sp_Get_EmployeeForLogin
+  Note over DB: DEFINITION NOT IN REPO
+  DB-->>L: PasswordHash EmployeeId FullName RoleName
+  L->>P: Verify bcrypt
+  P-->>L: ok/fail
+  L->>DB: sp_Insert_AuditLog
+  L-->>C: JWT+CSRF cookies + JSON profile

@@ -1,0 +1,10 @@
+flowchart TB
+  Client[Web Client]
+  IIS[IIS ASP.NET 4.8]
+  Login[Login.asmx / Login.cs]
+  Helpers[helper.cs / DB.cs]
+  Auth[JwtHelper / AuthGuard / PasswordHelper]
+  MySQL[(MySQL - schema/procs MISSING)]
+  Client -->|cookies JWT CSRF| IIS --> Login
+  Login --> Auth
+  Login --> Helpers --> MySQL
